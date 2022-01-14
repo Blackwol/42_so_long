@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	size_t		end;
 	size_t		start;
@@ -36,5 +36,6 @@ char	**ft_split(char const *s, char c)
 			if (start < end)
 				result[count_array++] = ft_substr(s, start, (end - start));
 		}
+	free(s);
 	return (result);
 }

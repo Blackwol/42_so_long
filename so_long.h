@@ -28,14 +28,17 @@ typedef struct t_map
 }	t_map;
 
 int		main(int argc, char **argv);
+char	*read_file(int fd, char *str_aux);
 char	**create_board(char *filename);
 int		validate_extension(char *filename);
 void	build_board(char **game_map);
 int		count_endline(char *str);
+int		validate_file_exist(char *filename);
 int		validate_file_presence(int argc);
 int		count_endline(char *str);
 int		validate_chars(t_map map);
 int		invalid_char(char element);
+void	free_map(t_map map);
 int		shape_invalid(char **game_map);
 int		check_rectangular_shape(int height, int row);
 int		invalid_game_rules_e(t_map map);

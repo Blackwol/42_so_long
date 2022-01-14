@@ -26,6 +26,20 @@ int	validate_extension(char *filename)
 	}
 }
 
+int	validate_file_exist(char *filename)
+{
+	int fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd <= 0)
+	{
+		printf("File doesn't exists.\n");
+		return (1);
+	}
+	close(fd);
+	return (0);
+}
+
 int	validate_file_presence(int argc)
 {
 	if (argc < 2)
