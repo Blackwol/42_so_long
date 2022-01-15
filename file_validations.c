@@ -28,7 +28,7 @@ int	validate_extension(char *filename)
 
 int	validate_file_exist(char *filename)
 {
-	int fd;
+	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)

@@ -50,7 +50,7 @@ char	**create_board(char *filename)
 
 void	free_map(t_map map)
 {
-	int index;
+	int	index;
 
 	index = 0;
 	while (map.game_map[index])
@@ -64,7 +64,7 @@ void	free_map(t_map map)
 int	main(int argc, char **argv)
 {
 	t_map	map;
-	int index;
+	int		index;
 
 	index = 0;
 	if (validate_file_presence(argc))
