@@ -6,25 +6,30 @@ LIBFT		= $(LIBFT_DIR)/libft.a
 
 CC			= gcc
 FLAGS		= -Wall -Wextra -Werror -c
-FLAGS2	= -Wall -Wextra -Werror
+FLAGS2		= -Wall -Wextra -Werror
 LIB			= ar rc
 LIB1		= ar -s
 RM			= rm -rf
+MLX_FLASG	= -lmlx -lXext -lX11
 
 SRCS		= so_long.c \
-					file_validations.c file_content_validations.c aux_funcs.c \
-					wall_validations.c game_rules.c
+					file_validations.c file_content_validations.c hooks.c \
+					wall_validations.c game_rules.c game.c get_next_line.c \
+					get_next_line_utils.c generate_imgs1.c generate_imgs2.c \
+					moves.c render.c init.c validations_utils.c
 
 OBJS		= so_long.o \
-					file_validations.o file_content_validations.o aux_funcs.o \
-					wall_validations.o game_rules.o
+					file_validations.o file_content_validations.o hooks.o \
+					wall_validations.o game_rules.o game.o get_next_line.o \
+					get_next_line_utils.o generate_imgs1.o generate_imgs2.o \
+					moves.o render.o init.o validations_utils.o
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
 			$(LIB)	$(NAME) $(OBJS)
 			$(LIB1) $(NAME)
-			$(CC) $(FLAGS2) -o $(EXEC_NAME) $(NAME)
+			$(CC) $(FLAGS2) -o $(EXEC_NAME) $(NAME) $(MLX_FLASG)
 
 $(OBJS):
 			$(CC) $(FLAGS) $(SRCS)
@@ -43,3 +48,5 @@ fclean:		clean
 			$(RM) $(EXEC_NAME)
 
 re:			fclean all
+
+.PHONY:	all re clean fclean

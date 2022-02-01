@@ -1,52 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   file_validations.c                                 :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/01/15 18:21:10 by coder            ###   ########.fr       */
+/*   Updated: 2022/02/01 04:13:51 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	validate_extension(char *filename)
+void	init_data_vars(t_data *data)
 {
-	char	*extension;
-
-	extension = ft_strrchr(filename, '.');
-	if (ft_strcmp(extension, ".ber"))
-		return (0);
-	else
-	{
-		write(1, "Wrong extension.\n", 17);
-		return (1);
-	}
+	data->imgs = ft_calloc(1, sizeof(t_img));
+	return ;
 }
 
-int	validate_file_exist(char *filename)
+void	init_map_vars(t_map *map)
 {
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd <= 0)
-	{
-		printf("File doesn't exist.\n");
-		return (1);
-	}
-	close(fd);
-	return (0);
-}
-
-int	validate_file_presence(int argc)
-{
-	if (argc < 2)
-	{
-		write(1, "File nil.\n", 10);
-		return (1);
-	}
-	else
-		return (0);
+	map->pos_x = 0;
+	map->pos_y = 0;
+	map->moves = 0;
+	map->collected = 0;
+	map->p_count = 0;
+	map->e_count = 0;
+	map->collectable_total = 0;
+	return ;
 }

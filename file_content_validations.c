@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   file_content_validations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcardoso <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2020/01/20 16:32:48 by pcardoso         ###   ########.fr       */
+/*   Updated: 2022/02/01 04:13:48 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	validate_chars(t_map map)
+int	validate_chars(t_map *map)
 {
-	map.position_x = 0;
-	map.position_y = 0;
-	while (map.game_map[map.position_x])
+	map->pos_x = 0;
+	map->pos_y = 0;
+	while (map->game_map[map->pos_x])
 	{
-		while (map.game_map[map.position_x][map.position_y])
+		while (map->game_map[map->pos_x][map->pos_y])
 		{
-			if (invalid_char(map.game_map[map.position_x][map.position_y]))
+			if (invalid_char(map->game_map[map->pos_x][map->pos_y]))
 				return (1);
-			map.position_y++;
+			increase_chars_count(map);
+			map->pos_y++;
 		}
-		map.position_y = 0;
-		map.position_x++;
+		map->width = map->pos_y;
+		map->pos_y = 0;
+		map->pos_x++;
 	}
-	if (shape_invalid(map.game_map))
+	map->height = map->pos_x;
+	if (shape_invalid(map->game_map))
 		return (1);
 	if (invalid_game_rules_e(map))
 		return (1);
-	if (invalid_top_wall(map.game_map, map.position_x))
+	if (invalid_top_wall(map->game_map, map->pos_x))
 		return (1);
 	return (0);
 }
@@ -75,12 +78,23 @@ int	check_rectangular_shape(int height, int row)
 
 int	invalid_char(char element)
 {
-	if ((element != 'P' && element != 'p') \
-		&& (element != 'E' && element != 'e') \
-		&& (element != 'C' && element != 'c') \
+	if ((element != 'P') \
+		&& (element != 'E') \
+		&& (element != 'C') \
 		&& element != '1' && element != '0' && element != '\n')
 	{
 		write(1, "Invalid character found!\n", 25);
+		return (1);
+	}
+	return (0);
+}
+
+int	validate_numbers_of_chars(char *str)
+{
+	if (ft_strlen(str) < 15)
+	{
+		free(str);
+		printf("Error\nMap must have at least 15 characters.\n");
 		return (1);
 	}
 	return (0);
