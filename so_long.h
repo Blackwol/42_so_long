@@ -3,38 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/02/01 04:44:46 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:35:51 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 16:36:06 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define RSIZE 20
 
-# define MLX_ERROR 1
-
-# define RED 0xFF0000
-# define BLACK 0x000000
-# define WHITE 0xFFFFFF
-# define GREEN 0x006600
-# define BLUE 0x0000FF
-
-# define KEYCODE_EXIT 65307 //ESC
-# define UP_ARROW 65362 //↑
-# define DOWN_ARROW 65364 //↓
-# define RIGHT_ARROW 65363 //→
-# define LEFT_ARROW 65361 //←
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define ESC_KEY 65307
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include "./libft/libft.h"
 # include <stdio.h>
-# include <X11/X.h>
-# include <X11/keysym.h>
 # include <mlx.h>
 # include "./get_next_line.h"
 
@@ -56,23 +45,18 @@ typedef struct s_map
 
 typedef struct s_img {
 	void	*img_wall;
-	char	*addr_wall;
 	int		img_width_wall;
 	int		img_height_wall;
 	void	*img_floor;
-	char	*addr_floor;
 	int		img_width_floor;
 	int		img_height_floor;
 	void	*img_collectable;
-	char	*addr_collect;
 	int		img_width_collectable;
 	int		img_height_collectable;
 	void	*img_player;
-	char	*addr_player;
 	int		img_width_player;
 	int		img_height_player;
 	void	*img_exit;
-	char	*addr_exit;
 	int		img_width_exit;
 	int		img_height_exit;
 }				t_img;
@@ -96,7 +80,6 @@ int		invalid_char(char element);
 int		validate_numbers_of_chars(char *str);
 void	free_map(t_map *map);
 int		shape_invalid(char **game_map);
-int		check_rectangular_shape(int height, int row);
 int		invalid_game_rules_e(t_map *map);
 int		invalid_game_rules_c(t_map *map);
 int		invalid_game_rules_p(t_map *map);
@@ -108,7 +91,7 @@ int		start_game(t_map map);
 
 void	set_hooks(t_data *data);
 
-int		get_key_press(int keysym, t_data *data);
+int		get_key_press(int keycode, t_data *data);
 int		close_window(t_data *data);
 int		render_map(t_data *data);
 
@@ -133,5 +116,7 @@ void	init_data_vars(t_data *data);
 void	init_map_vars(t_map *map);
 
 void	increase_chars_count(t_map *map);
+int		validate_empty_lines(char *str);
+void	handle_more_one_p(t_map *map);
 
 #endif

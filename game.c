@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/02/01 03:21:29 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:30:06 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:30:07 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ int	close_window(t_data *data)
 	exit (0);
 }
 
-int	get_key_press(int keysym, t_data *data)
+int	get_key_press(int keycode, t_data *data)
 {
-	if (keysym == XK_Escape)
+	if (keycode == ESC_KEY)
 		close_window(data);
-	if (keysym == XK_w)
+	if (keycode == W_KEY)
 		move_w(data);
-	if (keysym == XK_a)
+	if (keycode == A_KEY)
 		move_a(data);
-	if (keysym == XK_s)
+	if (keycode == S_KEY)
 		move_s(data);
-	if (keysym == XK_d)
+	if (keycode == D_KEY)
 		move_d(data);
 	return (0);
 }
@@ -63,7 +63,7 @@ int	start_game(t_map map)
 	data.mlx_win = mlx_new_window(data.mlx,
 			map.width * 64,
 			map.height * 64,
-			"Yugioh game");
+			"./so_long");
 	if (data.mlx_win == NULL)
 	{
 		free(data.mlx);

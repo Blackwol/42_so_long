@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_validations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/01/27 20:21:53 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:36:11 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:36:12 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	invalid_top_wall(char **game_map, int max_countx)
 	{
 		if (game_map[countx][county] != '1' && game_map[countx][county] != '\n')
 		{
-			write(1, "Map not surrounded by walls.\n", 29);
+			printf("Error\nMap not surrounded by walls.\n");
 			return (1);
 		}
 		county++;
@@ -38,7 +38,7 @@ int	invalid_right_wall(char **game_map, int cx, int cy, int max_cx)
 	{
 		if (game_map[cx][cy] != '1' && game_map[cx][cy] != '\n')
 		{
-			write(1, "Map not surrounded by walls.\n", 29);
+			printf("Error\nMap not surrounded by walls.\n");
 			return (1);
 		}
 		cx++;
@@ -53,7 +53,7 @@ int	invalid_low_wall(char **game_map, int countx, int county)
 	{
 		if (game_map[countx][county] != '1' && game_map[countx][county] != '\n')
 		{
-			write(1, "Map not surrounded by walls.\n", 29);
+			printf("Error\nMap not surrounded by walls.\n");
 			return (1);
 		}
 		county--;
@@ -68,7 +68,7 @@ int	invalid_left_wall(char **game_map, int countx, int county)
 	{
 		if (game_map[countx][county] != '1' && game_map[countx][county] != '\n')
 		{
-			write(1, "Map not surrounded by walls.\n", 29);
+			printf("Error\nMap not surrounded by walls.\n");
 			return (1);
 		}
 		countx--;

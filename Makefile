@@ -1,5 +1,6 @@
-NAME		= so_long.a
+LIB_NAME		= so_long.a
 EXEC_NAME = so_long
+NAME = so_long
 
 LIBFT_DIR	= ./libft
 LIBFT		= $(LIBFT_DIR)/libft.a
@@ -27,16 +28,16 @@ OBJS		= so_long.o \
 all:		$(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
-			$(LIB)	$(NAME) $(OBJS)
-			$(LIB1) $(NAME)
-			$(CC) $(FLAGS2) -o $(EXEC_NAME) $(NAME) $(MLX_FLASG)
+			$(LIB)	$(LIB_NAME) $(OBJS)
+			$(LIB1) $(LIB_NAME)
+			$(CC) $(FLAGS2) -o $(EXEC_NAME) $(LIB_NAME) $(MLX_FLASG)
 
 $(OBJS):
 			$(CC) $(FLAGS) $(SRCS)
 
 $(LIBFT):
 			make all -C $(LIBFT_DIR)
-			cp $(LIBFT) $(NAME)
+			cp $(LIBFT) $(LIB_NAME)
 
 clean:
 			make clean -C $(LIBFT_DIR)
@@ -44,7 +45,7 @@ clean:
 
 fclean:		clean
 			make fclean -C $(LIBFT_DIR)
-			$(RM) $(NAME)
+			$(RM) $(LIB_NAME)
 			$(RM) $(EXEC_NAME)
 
 re:			fclean all

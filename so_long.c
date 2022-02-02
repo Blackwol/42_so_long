@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/02/01 03:47:37 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:35:36 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:35:43 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char	**create_board(char *filename)
 	str_aux = read_file(fd, str_aux);
 	close(fd);
 	if (validate_numbers_of_chars(str_aux))
+		exit (0);
+	if (validate_empty_lines(str_aux))
 		exit (0);
 	game_map = ft_split(str_aux, '\n');
 	return (game_map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_content_validations.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/02/01 04:13:48 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:01:58 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:01:59 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	validate_chars(t_map *map)
 	map->height = map->pos_x;
 	if (shape_invalid(map->game_map))
 		return (1);
-	if (invalid_game_rules_e(map))
-		return (1);
 	if (invalid_top_wall(map->game_map, map->pos_x))
+		return (1);
+	if (invalid_game_rules_e(map))
 		return (1);
 	return (0);
 }
@@ -56,22 +56,12 @@ int	shape_invalid(char **game_map)
 			len_row_before = length;
 		if (len_row_before != length)
 		{
-			write(1, "Map is not a rectangle.\n", 24);
+			printf("Error\nMap is not a rectangle.\n");
 			return (1);
 		}
 		len_row_before = length;
 		length = 0;
 		count++;
-	}
-	return (check_rectangular_shape(count, len_row_before));
-}
-
-int	check_rectangular_shape(int height, int row)
-{
-	if (height == row)
-	{
-		write(1, "Map is not a rectangle.\n", 24);
-		return (1);
 	}
 	return (0);
 }
@@ -83,7 +73,7 @@ int	invalid_char(char element)
 		&& (element != 'C') \
 		&& element != '1' && element != '0' && element != '\n')
 	{
-		write(1, "Invalid character found!\n", 25);
+		printf("Error\nInvalid character found!\n");
 		return (1);
 	}
 	return (0);

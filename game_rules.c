@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_rules.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/02/01 04:24:31 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:02:52 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:02:53 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,6 @@ int	invalid_game_rules_p(t_map *map)
 		return (1);
 	}
 	if (map->p_count > 1)
-	{
-		printf("Error\n");
-		printf("Map must have only one P position.\n");
-		return (1);
-	}
+		handle_more_one_p(map);
 	return (0);
 }

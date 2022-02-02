@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_validations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pcardoso <pcardoso@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 16:25:48 by pcardoso          #+#    #+#             */
-/*   Updated: 2022/01/15 18:21:10 by coder            ###   ########.fr       */
+/*   Created: 2022/02/02 06:02:40 by pcardoso          #+#    #+#             */
+/*   Updated: 2022/02/02 06:02:42 by pcardoso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	validate_extension(char *filename)
 		return (0);
 	else
 	{
-		write(1, "Wrong extension.\n", 17);
+		printf("Error\nWrong extension.\n");
 		return (1);
 	}
 }
@@ -33,7 +33,7 @@ int	validate_file_exist(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
 	{
-		printf("File doesn't exist.\n");
+		printf("Error\nFile doesn't exist.\n");
 		return (1);
 	}
 	close(fd);
@@ -44,7 +44,12 @@ int	validate_file_presence(int argc)
 {
 	if (argc < 2)
 	{
-		write(1, "File nil.\n", 10);
+		printf("Error\nFile nil.\n");
+		return (1);
+	}
+	else if (argc > 2)
+	{
+		printf("Error\nOnly one parameter allowed.\n");
 		return (1);
 	}
 	else
